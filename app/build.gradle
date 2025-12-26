@@ -4,17 +4,24 @@ plugins {
 }
 
 android {
-    signingConfigs {
-        release {
-        storeFile file('C:\\Users\\admin\\AndroidStudioProjects\\WavetableSynthesizer\\keystores\\WavetableSynthesizer.jks')
-        }
-    }
-    compileSdk 31
+    namespace "com.thewolfsound.wavetablesynthesizer"
+//    signingConfigs {
+//        release {
+//        //storeFile file('C:/Users/admin/AndroidStudioProjects/WavetableSynthesizer/keystores/WavetableSynthesizer.jks')
+//            // Assuming you moved the .jks file to YourProject/app/keystores/
+//            storeFile file("keystores/WavetableSynthesizer.jks")
+//            // It's also recommended to not hardcode your passwords.
+//            // storePassword "YOUR_STORE_PASSWORD"
+//            // keyAlias "YOUR_KEY_ALIAS"
+//            // keyPassword "YOUR_KEY_PASSWORD"
+//        }
+//    }
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.thewolfsound.wavetablesynthesizer"
         minSdk 30
-        targetSdk 31
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -40,9 +47,14 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+//    kotlinOptions {
+//        jvmTarget = '1.8'
+//        freeCompilerArgs += '-Xjvm-default=compatibility'
+//    }
     kotlinOptions {
         jvmTarget = '1.8'
-        freeCompilerArgs += '-Xjvm-default=compatibility'
+        // Use the new, recommended mode for modern Kotlin versions.
+        freeCompilerArgs = ["-Xjvm-default=all-compatibility"]
     }
     buildFeatures {
         compose true
